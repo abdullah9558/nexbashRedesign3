@@ -123,7 +123,7 @@ export default function HeroWorld() {
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(36, width / height, 0.1, 100);
-    camera.position.set(0, 0, 3.95);
+    camera.position.set(0, 0, 3.55);
     camera.lookAt(0, 0, 0);
 
     const dpr = window.devicePixelRatio || 1;
@@ -138,7 +138,7 @@ export default function HeroWorld() {
     mount.appendChild(renderer.domElement);
 
     const globe = new THREE.Group();
-    globe.scale.setScalar(0.88);
+    globe.scale.setScalar(1);
     globe.rotation.y = 0.55;
     scene.add(globe);
 
