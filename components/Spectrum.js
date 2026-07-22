@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import useDragSlide from '@/components/useDragSlide';
+import useAnimatedStep from '@/components/useAnimatedStep';
+import { ChevronLeft, ChevronRight } from '@/components/NavArrows';
 
 /** Studios — large detail card with prev/next + dots */
 export default function Spectrum({ studios = [] }) {
@@ -28,6 +30,7 @@ export default function Spectrum({ studios = [] }) {
   );
 
   const { viewportRef, trackRef } = useDragSlide(step);
+  const animatedStep = useAnimatedStep(step, trackRef);
 
   useEffect(() => {
     const onKey = (e) => {
@@ -69,8 +72,8 @@ export default function Spectrum({ studios = [] }) {
           onMouseLeave={() => setPaused(false)}
         >
           <div className="spectrum-stage">
-            <button type="button" className="ghost ind-nav" onClick={() => step(-1)} aria-label="Previous studio">
-              ←
+            <button type="button" className="ghost ind-nav" onClick={() => animatedStep(-1)} aria-label="Previous studio">
+              <ChevronLeft />
             </button>
 
             <div className="spectrum-viewport drag-swipe" ref={viewportRef}>
@@ -102,8 +105,8 @@ export default function Spectrum({ studios = [] }) {
               </div>
             </div>
 
-            <button type="button" className="ghost ind-nav" onClick={() => step(1)} aria-label="Next studio">
-              →
+            <button type="button" className="ghost ind-nav" onClick={() => animatedStep(1)} aria-label="Next studio">
+              <ChevronRight />
             </button>
           </div>
 
@@ -129,7 +132,7 @@ export default function Spectrum({ studios = [] }) {
           if (e.target === e.currentTarget) setAllOpen(false);
         }}
       >
-        <div className="ap-modal-card">
+        <div className="ap-modal-card" key={allOpen ? 'studios-open' : 'studios'}>
           <button type="button" className="modal-close" aria-label="Close" onClick={() => setAllOpen(false)}>
             ×
           </button>

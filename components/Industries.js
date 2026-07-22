@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import useDragSlide from '@/components/useDragSlide';
+import useAnimatedStep from '@/components/useAnimatedStep';
+import { ChevronLeft, ChevronRight } from '@/components/NavArrows';
 
 export default function Industries({ industries = [] }) {
   const [idx, setIdx] = useState(0);
@@ -20,6 +22,7 @@ export default function Industries({ industries = [] }) {
   );
 
   const { viewportRef, trackRef } = useDragSlide(step);
+  const animatedStep = useAnimatedStep(step, trackRef);
 
   const goTo = (next) => {
     setDir(next > idx || (idx === total - 1 && next === 0) ? 1 : -1);
@@ -69,8 +72,8 @@ export default function Industries({ industries = [] }) {
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
-          <button type="button" className="ghost ind-nav" onClick={() => step(-1)} aria-label="Previous">
-            ←
+          <button type="button" className="ghost ind-nav" onClick={() => animatedStep(-1)} aria-label="Previous">
+            <ChevronLeft />
           </button>
           <div className="ind-viewport drag-swipe" ref={viewportRef}>
             <div
@@ -88,8 +91,8 @@ export default function Industries({ industries = [] }) {
               </div>
             </div>
           </div>
-          <button type="button" className="ghost ind-nav" onClick={() => step(1)} aria-label="Next">
-            →
+          <button type="button" className="ghost ind-nav" onClick={() => animatedStep(1)} aria-label="Next">
+            <ChevronRight />
           </button>
         </div>
 
@@ -112,7 +115,7 @@ export default function Industries({ industries = [] }) {
           if (e.target === e.currentTarget) setOpen(false);
         }}
       >
-        <div className="ap-modal-card">
+        <div className="ap-modal-card" key={open ? 'industries-open' : 'industries'}>
           <button type="button" className="modal-close" aria-label="Close" onClick={() => setOpen(false)}>
             ×
           </button>

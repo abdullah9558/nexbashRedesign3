@@ -3,10 +3,10 @@
 import { useEffect, useRef } from 'react';
 
 /**
- * Live drag-to-slide — the track follows the pointer, then snaps a step on release.
- * @param {(delta: 1 | -1) => void} onStep
+ * Live drag-to-slide. Uses window listeners (no pointer capture) so nested
+ * card buttons still receive normal clicks.
  */
-export default function useDragSlide(onStep, { threshold = 56 } = {}) {
+export default function useDragSlide(onStep, { threshold = 64 } = {}) {
   const viewportRef = useRef(null);
   const trackRef = useRef(null);
   const didDrag = useRef(false);
@@ -22,6 +22,7 @@ export default function useDragSlide(onStep, { threshold = 56 } = {}) {
     let startX = 0;
     let lastDx = 0;
     let pid = null;
+    const DRAG_START = 14;
 
     const track = () => trackRef.current;
 
@@ -29,6 +30,7 @@ export default function useDragSlide(onStep, { threshold = 56 } = {}) {
       const t = track();
       if (!t) return;
       t.style.transform = x ? `translate3d(${x}px, 0, 0)` : '';
+      t.style.transition = x ? 'none' : '';
     };
 
     const setDraggingClass = (on) => {
@@ -36,20 +38,10 @@ export default function useDragSlide(onStep, { threshold = 56 } = {}) {
       track()?.classList.toggle('is-dragging', on);
     };
 
-    const down = (e) => {
-      if (e.pointerType === 'mouse' && e.button !== 0) return;
-      if (e.target.closest('a, .ind-nav, .ind-dot')) return;
-      active = true;
-      dragging = false;
-      didDrag.current = false;
-      startX = e.clientX;
-      lastDx = 0;
-      pid = e.pointerId;
-      try {
-        viewport.setPointerCapture(e.pointerId);
-      } catch {
-        /* ignore */
-      }
+    const cleanupWindow = () => {
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+      window.removeEventListener('pointercancel', up);
     };
 
     const move = (e) => {
@@ -57,7 +49,7 @@ export default function useDragSlide(onStep, { threshold = 56 } = {}) {
       if (pid != null && e.pointerId !== pid) return;
       const dx = e.clientX - startX;
       lastDx = dx;
-      if (!dragging && Math.abs(dx) < 5) return;
+      if (!dragging && Math.abs(dx) < DRAG_START) return;
       if (!dragging) {
         dragging = true;
         didDrag.current = true;
@@ -73,37 +65,59 @@ export default function useDragSlide(onStep, { threshold = 56 } = {}) {
     const up = (e) => {
       if (!active) return;
       if (e && pid != null && e.pointerId !== pid) return;
+
+      const wasDragging = dragging;
+      const dx = lastDx;
       active = false;
       pid = null;
-      if (dragging) {
-        setDraggingClass(false);
-        const dx = lastDx;
-        apply(0);
-        if (Math.abs(dx) >= threshold) {
-          onStepRef.current(dx < 0 ? 1 : -1);
-        }
+      dragging = false;
+      lastDx = 0;
+      cleanupWindow();
+
+      if (!wasDragging) {
+        didDrag.current = false;
+        return;
+      }
+
+      setDraggingClass(false);
+      apply(0);
+
+      if (Math.abs(dx) >= threshold) {
+        onStepRef.current(dx < 0 ? 1 : -1);
         const block = (ev) => {
           ev.preventDefault();
           ev.stopPropagation();
         };
+        // Only swallow the click that follows a real swipe
         viewport.addEventListener('click', block, { capture: true, once: true });
+        window.setTimeout(() => {
+          didDrag.current = false;
+        }, 80);
+      } else {
+        // Small nudge — treat as click, do not block
+        didDrag.current = false;
       }
+    };
+
+    const down = (e) => {
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      if (e.target.closest('a, .ind-nav, .ind-dot')) return;
+      active = true;
       dragging = false;
+      didDrag.current = false;
+      startX = e.clientX;
       lastDx = 0;
+      pid = e.pointerId;
+      window.addEventListener('pointermove', move, { passive: false });
+      window.addEventListener('pointerup', up);
+      window.addEventListener('pointercancel', up);
     };
 
     viewport.addEventListener('pointerdown', down);
-    viewport.addEventListener('pointermove', move, { passive: false });
-    viewport.addEventListener('pointerup', up);
-    viewport.addEventListener('pointercancel', up);
-    viewport.addEventListener('lostpointercapture', up);
 
     return () => {
       viewport.removeEventListener('pointerdown', down);
-      viewport.removeEventListener('pointermove', move);
-      viewport.removeEventListener('pointerup', up);
-      viewport.removeEventListener('pointercancel', up);
-      viewport.removeEventListener('lostpointercapture', up);
+      cleanupWindow();
       apply(0);
       setDraggingClass(false);
     };

@@ -1443,21 +1443,21 @@ body:has(.ap-modal.open) .topnav {
 }
 
 .screen .ind-nav {
-  width: 46px;
-  height: 46px;
-  min-width: 46px;
-  min-height: 46px;
-  max-width: 46px;
-  max-height: 46px;
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  min-height: 48px;
+  max-width: 48px;
+  max-height: 48px;
   padding: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   align-self: center;
   flex: none;
-  line-height: 1;
+  line-height: 0;
   border-radius: 999px;
-  font-size: 1.05rem;
+  color: var(--ink);
 }
 
 /* Process */
@@ -2711,22 +2711,28 @@ body:has(.ap-modal.open) .topnav {
 .ap-modal {
   position: fixed;
   inset: 0;
-  z-index: 200;
+  z-index: 400;
   display: grid;
   place-items: center;
   padding: 1.25rem;
-  background: rgba(4, 28, 53, 0.55);
-  backdrop-filter: blur(6px);
+  background: rgba(4, 28, 53, 0);
+  backdrop-filter: blur(0);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.25s ease, visibility 0.25s ease;
+  transition:
+    opacity 0.32s ease,
+    visibility 0.32s ease,
+    background 0.32s ease,
+    backdrop-filter 0.32s ease;
 }
 
 .ap-modal.open {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
+  background: rgba(4, 28, 53, 0.58);
+  backdrop-filter: blur(8px);
 }
 
 .ap-modal-card {
@@ -2739,6 +2745,79 @@ body:has(.ap-modal.open) .topnav {
   border: 1px solid var(--line);
   box-shadow: 0 30px 80px rgba(4, 28, 53, 0.28);
   position: relative;
+  opacity: 0;
+  transform: translateY(28px) scale(0.94);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.ap-modal.open .ap-modal-card {
+  animation: modal-in 0.48s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.ap-modal.open .ap-modal-card > *:not(.modal-close) {
+  animation: modal-content-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.ap-modal.open .ap-modal-card > *:nth-child(1) {
+  animation-delay: 0.04s;
+}
+.ap-modal.open .ap-modal-card > *:nth-child(2) {
+  animation-delay: 0.08s;
+}
+.ap-modal.open .ap-modal-card > *:nth-child(3) {
+  animation-delay: 0.12s;
+}
+.ap-modal.open .ap-modal-card > *:nth-child(4) {
+  animation-delay: 0.16s;
+}
+.ap-modal.open .ap-modal-card > *:nth-child(5) {
+  animation-delay: 0.2s;
+}
+.ap-modal.open .ap-modal-card > *:nth-child(6) {
+  animation-delay: 0.24s;
+}
+.ap-modal.open .ap-modal-card > *:nth-child(n + 7) {
+  animation-delay: 0.28s;
+}
+
+.ap-modal.open .modal-close {
+  animation: modal-content-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.18s both;
+}
+
+.ap-modal.open .ap-modal-grid .ap-modal-item,
+.ap-modal.open .ap-modal-grid .story-pick {
+  animation: modal-item-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.ap-modal.open .ap-modal-grid .ap-modal-item:nth-child(1),
+.ap-modal.open .ap-modal-grid .story-pick:nth-child(1) {
+  animation-delay: 0.14s;
+}
+.ap-modal.open .ap-modal-grid .ap-modal-item:nth-child(2),
+.ap-modal.open .ap-modal-grid .story-pick:nth-child(2) {
+  animation-delay: 0.18s;
+}
+.ap-modal.open .ap-modal-grid .ap-modal-item:nth-child(3),
+.ap-modal.open .ap-modal-grid .story-pick:nth-child(3) {
+  animation-delay: 0.22s;
+}
+.ap-modal.open .ap-modal-grid .ap-modal-item:nth-child(4),
+.ap-modal.open .ap-modal-grid .story-pick:nth-child(4) {
+  animation-delay: 0.26s;
+}
+.ap-modal.open .ap-modal-grid .ap-modal-item:nth-child(5),
+.ap-modal.open .ap-modal-grid .story-pick:nth-child(5) {
+  animation-delay: 0.3s;
+}
+.ap-modal.open .ap-modal-grid .ap-modal-item:nth-child(6),
+.ap-modal.open .ap-modal-grid .story-pick:nth-child(6) {
+  animation-delay: 0.34s;
+}
+.ap-modal.open .ap-modal-grid .ap-modal-item:nth-child(n + 7),
+.ap-modal.open .ap-modal-grid .story-pick:nth-child(n + 7) {
+  animation-delay: 0.38s;
 }
 
 .ap-modal-card h3 {
@@ -2854,10 +2933,21 @@ body:has(.ap-modal.open) .topnav {
   justify-content: center;
   align-self: center;
   flex: none;
-  line-height: 1;
+  line-height: 0;
   border-radius: 999px;
   font-size: 1.05rem;
   box-sizing: border-box;
+  color: var(--ink);
+}
+
+.ind-nav svg {
+  display: block;
+  flex: none;
+}
+
+.ind-nav:hover {
+  color: var(--orange);
+  border-color: rgba(255, 74, 19, 0.45);
 }
 
 .ind-frame {
@@ -2931,6 +3021,8 @@ body:has(.ap-modal.open) .topnav {
   align-items: center;
 }
 
+.spectrum-viewport,
+.ind-viewport,
 .story-viewport {
   overflow: hidden;
   min-width: 0;
@@ -2955,6 +3047,12 @@ body:has(.ap-modal.open) .topnav {
   transform: scale(0.94);
   transition: opacity 0.45s ease, transform 0.45s var(--ease), border-color 0.35s ease,
     box-shadow 0.35s ease;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  color: inherit;
+  font: inherit;
+  width: 100%;
+  appearance: none;
 }
 
 .story-card.on {
@@ -3257,11 +3355,21 @@ body:has(.ap-modal.open) .topnav {
 
 /* Directional slideshow / panel slides — scoped so layout transforms stay intact */
 .slide-next {
-  animation: slide-next var(--slide) var(--ease) both;
+  animation: slide-next 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .slide-prev {
-  animation: slide-prev var(--slide) var(--ease) both;
+  animation: slide-prev 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.slide-out-next {
+  animation: slide-out-next 0.34s cubic-bezier(0.4, 0, 0.2, 1) both;
+  pointer-events: none;
+}
+
+.slide-out-prev {
+  animation: slide-out-prev 0.34s cubic-bezier(0.4, 0, 0.2, 1) both;
+  pointer-events: none;
 }
 
 .spectrum-panel.slide-next,
@@ -3274,7 +3382,7 @@ body:has(.ap-modal.open) .topnav {
 .ind-frame.slide-prev,
 .lens-core.slide-next,
 .lens-core.slide-prev {
-  animation-duration: 1.05s;
+  animation-duration: 0.55s;
 }
 
 @keyframes fade-up {
@@ -3291,34 +3399,44 @@ body:has(.ap-modal.open) .topnav {
 @keyframes slide-next {
   0% {
     opacity: 0;
-    transform: translateX(48px) scale(0.97);
-    filter: blur(6px);
-  }
-  55% {
-    opacity: 1;
-    filter: blur(0);
+    transform: translate3d(64px, 0, 0);
   }
   100% {
     opacity: 1;
-    transform: none;
-    filter: none;
+    transform: translate3d(0, 0, 0);
   }
 }
 
 @keyframes slide-prev {
   0% {
     opacity: 0;
-    transform: translateX(-48px) scale(0.97);
-    filter: blur(6px);
-  }
-  55% {
-    opacity: 1;
-    filter: blur(0);
+    transform: translate3d(-64px, 0, 0);
   }
   100% {
     opacity: 1;
-    transform: none;
-    filter: none;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slide-out-next {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(-64px, 0, 0);
+  }
+}
+
+@keyframes slide-out-prev {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(64px, 0, 0);
   }
 }
 
@@ -3384,14 +3502,35 @@ body:has(.ap-modal.open) .topnav {
   animation: fade-up 0.35s var(--ease);
 }
 
-.ap-modal.open .ap-modal-card {
-  animation: modal-in 0.35s var(--ease);
+@keyframes modal-in {
+  0% {
+    opacity: 0;
+    transform: translateY(32px) scale(0.92);
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
-@keyframes modal-in {
+@keyframes modal-content-in {
   from {
     opacity: 0;
-    transform: translateY(16px) scale(0.98);
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes modal-item-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.96);
   }
   to {
     opacity: 1;
@@ -4003,7 +4142,14 @@ body {
   .anim-fade,
   [data-reveal] .reveal-child,
   .slide-next,
-  .slide-prev {
+  .slide-prev,
+  .slide-out-next,
+  .slide-out-prev,
+  .ap-modal.open .ap-modal-card,
+  .ap-modal.open .ap-modal-card > *,
+  .ap-modal.open .ap-modal-grid .ap-modal-item,
+  .ap-modal.open .ap-modal-grid .story-pick,
+  .ap-modal.open .modal-close {
     opacity: 1 !important;
     transform: none !important;
     animation: none !important;
