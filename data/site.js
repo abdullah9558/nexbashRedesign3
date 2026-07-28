@@ -251,7 +251,7 @@ const site = {
       tag: 'Utilities · Public Works · Urban Planning',
       title: 'Enterprise 3D Geospatial Intelligence Platform',
       description: 'A SaaS platform eliminating data silos by integrating satellite imagery, aerial photogrammetry, and ground-sensor feeds into a single, high-performance 3D rendering pipeline for real-time situational awareness.',
-      image: '/assets/project-geospatial.png',
+      image: '/assets/project-geospatial-16x9.webp',
       industry: 'Utilities · Public Works · Urban Planning',
       duration: '14 months (ongoing) · 8-12 engineers and data scientists',
       metrics: [
@@ -326,7 +326,7 @@ const site = {
       tag: 'Business Intelligence · Retail · Marketing Technology',
       title: 'Business Intelligence & Market Insights Platform',
       description: 'A GIS-Based SaaS platform unifying fragmented business registration data and consumer behavior silos to drive smarter site selection and targeted marketing campaigns.',
-      image: '/assets/project-market-insights.png',
+      image: '/assets/project-market-insights-16x9.webp',
       industry: 'Business Intelligence · Retail · Marketing Technology',
       duration: '28 months (Ongoing) · 6-10 engineers, data specialists, and product designers',
       metrics: [
@@ -398,7 +398,7 @@ const site = {
       tag: 'Smart Home · IoT · Consumer Application',
       title: 'Smart Living & Device Management Platform',
       description: 'A unified digital experience merging smart home controls with personal health metrics, eliminating app fragmentation and enabling context-aware automation.',
-      image: '/assets/project-smart-home.png',
+      image: '/assets/project-smart-home-16x9.webp',
       industry: 'Smart Home · IoT · Consumer Application',
       duration: 'Ongoing product development · Mobile, backend, and IoT integration teams',
       metrics: [
@@ -464,7 +464,7 @@ const site = {
       tag: 'Knowledge Management · Public Sector · Research Institutions',
       title: 'National Digital Archive & Information Gateway',
       description: 'Unifying 50+ years of archived research, multimedia assets, and institutional records into a single, searchable, governed digital ecosystem.',
-      image: '/assets/project-digital-archive.png',
+      image: '/assets/project-digital-archive-16x9.webp',
       industry: 'Knowledge Management · Public Sector · Research Institutions',
       duration: '09 months · 4-6 engineers and product specialists',
       metrics: [
@@ -532,7 +532,7 @@ const site = {
       tag: 'Real Estate · Property Management · Public Sector Compliance',
       title: 'Property Management & Regulatory Intelligence Platform',
       description: 'We took a chaotic web of local bylaws and turned them into a single, intelligent engine. By using ElasticSearch, we have made it possible for enterprise portfolios to get NOCs automatically with instant data-backed clarity.',
-      image: '/assets/project-property-regtech.png',
+      image: '/assets/project-property-regtech-16x9.webp',
       industry: 'Real Estate · Property Management · Public Sector Compliance',
       duration: '10 months · 5-7 engineers and domain specialists',
       metrics: [
@@ -603,7 +603,7 @@ const site = {
       tag: 'E-commerce · Fashion · Mobile Marketplaces',
       title: 'Ree: The Future of P2P Fashion',
       description: 'A mobile-first marketplace designed to revolutionize the circular fashion economy by building trust, simplifying the listing process, and creating a social shopping experience.',
-      image: '/assets/project-fashion-ree.png',
+      image: '/assets/project-fashion-ree-16x9.webp',
       industry: 'E-commerce · Fashion · Mobile Marketplaces',
       duration: 'Ongoing releases · Mobile and backend development team',
       metrics: [
@@ -673,7 +673,7 @@ const site = {
       tag: 'Productivity · Team Collaboration · SaaS',
       title: 'The Operating System for Modern Work',
       description: 'A comprehensive project to streamline organizational workflows by centralizing communication, task management, and file storage into a single, synchronized interface.',
-      image: '/assets/project-work-os.png',
+      image: '/assets/project-work-os-16x9.webp',
       industry: 'Productivity · Team Collaboration · SaaS',
       duration: '18 Months · Cross-functional product and engineering team',
       metrics: [
@@ -744,7 +744,7 @@ const site = {
       tag: 'Healthcare · Clinical Diagnostics',
       title: 'AI-Enabled Early Cancer Detection Platform',
       description: 'A clinical deep-dive into pixel-level diagnostic accuracy & real-time implementation for early-stage pulmonary nodule detection using neural networks.',
-      image: '/assets/project-healthcare-ai.png',
+      image: '/assets/project-healthcare-ai-16x9.webp',
       industry: 'Healthcare · Clinical Diagnostics',
       duration: '12 months · 6-10 specialists',
       metrics: [
@@ -815,7 +815,7 @@ const site = {
       tag: 'Web3 · Cryptocurrency · Fintech · Gaming',
       title: 'Cyber Punk Wallet',
       description: 'A next-generation Web3 wallet redesigned for the gaming-native crypto community, combining decentralized asset management with gamified rewards and social trading features.',
-      image: '/assets/story-cyber-punk.webp',
+      image: '/assets/story-cyber-punk-16x9.webp',
       industry: 'Web3 · Cryptocurrency · Fintech · Gaming',
       duration: 'Ongoing expansion · Mobile, blockchain, and backend teams',
       metrics: [
@@ -887,7 +887,7 @@ const site = {
       tag: 'Web3 · Social Media · Creator Economy · Fintech',
       title: 'Authentic Voices: AI-Powered Creator Network',
       description: 'A Web3-native social media platform where every moment goes live with AI-assisted content discovery, blockchain-backed creator monetization, and decentralized content ownership.',
-      image: '/assets/story-authentic-voices.webp',
+      image: '/assets/story-authentic-voices-16x9.webp',
       industry: 'Web3 · Social Media · Creator Economy · Fintech',
       duration: '16 Months · AI, mobile, blockchain, and community teams',
       metrics: [
@@ -960,7 +960,7 @@ const site = {
       tag: 'Music Technology · Audio AI · Creator Economy',
       title: 'AI Music Revolution Platform',
       description: 'A cutting-edge music creation platform powered by generative AI, enabling musicians to compose songs, create AI covers with diverse voice models, and collaborate in real-time with intelligent voice synthesis.',
-      image: '/assets/story-ai-music.webp',
+      image: '/assets/story-ai-music-16x9.webp',
       industry: 'Music Technology · Audio AI · Creator Economy',
       duration: '14 Months · AI/ML, audio engineering, and product teams',
       metrics: [

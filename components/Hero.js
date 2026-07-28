@@ -6,16 +6,18 @@ import HeroWorld from '@/components/HeroWorld';
 export default function Hero({ heroBar = [] }) {
   return (
     <section className="hero screen" id="top">
-      <div
+      <video
         className="hero-space"
-        style={{ backgroundImage: "url('/assets/space-backdrop.jpg')" }}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        poster="/assets/space-backdrop.jpg"
         aria-hidden="true"
-      />
-      <div className="hero-space-fade" aria-hidden="true" />
-      <div className="hero-wash float-slow" aria-hidden="true" />
-      <div className="float-orb o1" aria-hidden="true" />
-      <div className="float-orb o2" aria-hidden="true" />
-      <div className="float-orb o3" aria-hidden="true" />
+      >
+        <source src="/assets/hero-scenes.mp4" type="video/mp4" />
+      </video>
 
       <div className="hero-main">
         <div className="hero-copy">
@@ -51,7 +53,6 @@ export default function Hero({ heroBar = [] }) {
             <span className="hero-bar-num">{item.num}</span>
             <div>
               <h5>{item.title}</h5>
-              <p>{item.text}</p>
             </div>
           </article>
         ))}

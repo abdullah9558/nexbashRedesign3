@@ -139,7 +139,8 @@ export default function HeroWorld() {
 
     const globe = new THREE.Group();
     globe.scale.setScalar(1);
-    globe.rotation.y = 0.55;
+    // Start centered on Asia (roughly 90° E).
+    globe.rotation.y = -Math.PI;
     scene.add(globe);
 
     const radius = 1;

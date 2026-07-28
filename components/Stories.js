@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import useDragSlide from '@/components/useDragSlide';
-import useAnimatedStep from '@/components/useAnimatedStep';
 import { ChevronLeft, ChevronRight } from '@/components/NavArrows';
 
 export default function Stories({ stories = [] }) {
@@ -25,7 +24,6 @@ export default function Stories({ stories = [] }) {
   );
 
   const { viewportRef, trackRef, didDrag } = useDragSlide(step);
-  const animatedStep = useAnimatedStep(step, trackRef);
 
   useEffect(() => {
     setMounted(true);
@@ -243,7 +241,7 @@ export default function Stories({ stories = [] }) {
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
-          <button type="button" className="ghost ind-nav" onClick={() => animatedStep(-1)} aria-label="Previous">
+          <button type="button" className="ghost ind-nav" onClick={() => step(-1)} aria-label="Previous">
             <ChevronLeft />
           </button>
           <div className="story-viewport drag-swipe" ref={viewportRef}>
@@ -276,7 +274,7 @@ export default function Stories({ stories = [] }) {
               ))}
             </div>
           </div>
-          <button type="button" className="ghost ind-nav" onClick={() => animatedStep(1)} aria-label="Next">
+          <button type="button" className="ghost ind-nav" onClick={() => step(1)} aria-label="Next">
             <ChevronRight />
           </button>
         </div>

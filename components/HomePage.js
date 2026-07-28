@@ -3,7 +3,6 @@
 import Bloom from '@/components/Bloom';
 import GeoField from '@/components/GeoField';
 import MotionRoot from '@/components/MotionRoot';
-import ThemeProvider from '@/components/ThemeProvider';
 import Nav from '@/components/Nav';
 import Hero from '@/components/Hero';
 import Spectrum from '@/components/Spectrum';
@@ -20,7 +19,7 @@ import Footer from '@/components/Footer';
 
 export default function HomePage({ site }) {
   return (
-    <ThemeProvider>
+    <>
       <GeoField />
       <Bloom />
       <MotionRoot />
@@ -39,6 +38,6 @@ export default function HomePage({ site }) {
         <Contact />
       </main>
       <Footer />
-    </ThemeProvider>
+    </>
   );
 }

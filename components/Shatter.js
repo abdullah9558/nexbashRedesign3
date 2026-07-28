@@ -6,14 +6,14 @@ import useDragSlide from '@/components/useDragSlide';
 
 /** Shatter gallery for previous projects */
 const PROJECT_IMAGES = {
-  geospatial: '/assets/project-geospatial.png',
-  'healthcare-ai': '/assets/project-healthcare-ai.png',
-  'work-os': '/assets/project-work-os.png',
-  'fashion-ree': '/assets/project-fashion-ree.png',
-  'market-insights': '/assets/project-market-insights.png',
-  'smart-home': '/assets/project-smart-home.png',
-  'digital-archive': '/assets/project-digital-archive.png',
-  'property-regtech': '/assets/project-property-regtech.png',
+  geospatial: '/assets/project-geospatial-16x9.webp',
+  'healthcare-ai': '/assets/project-healthcare-ai-16x9.webp',
+  'work-os': '/assets/project-work-os-16x9.webp',
+  'fashion-ree': '/assets/project-fashion-ree-16x9.webp',
+  'market-insights': '/assets/project-market-insights-16x9.webp',
+  'smart-home': '/assets/project-smart-home-16x9.webp',
+  'digital-archive': '/assets/project-digital-archive-16x9.webp',
+  'property-regtech': '/assets/project-property-regtech-16x9.webp',
 };
 
 export default function Shatter({ projects = [] }) {

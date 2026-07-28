@@ -543,11 +543,9 @@ body:has(.ap-modal.open) .topnav {
   z-index: 0;
   width: 100%;
   height: 100%;
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  opacity: 0.55;
-  animation: space-drift 48s ease-in-out infinite alternate;
+  object-fit: cover;
+  object-position: center center;
+  opacity: 1;
   pointer-events: none;
 }
 
@@ -648,7 +646,7 @@ body:has(.ap-modal.open) .topnav {
   max-width: 34rem;
   padding-bottom: 0;
   margin-bottom: 0;
-  transform: none;
+  transform: translateY(-80px);
 }
 
 .hero-world-stage {
@@ -741,17 +739,20 @@ body:has(.ap-modal.open) .topnav {
 
 .hero-bar-item {
   display: flex;
-  gap: 0.45rem;
-  padding: clamp(0.55rem, 1.2vh, 0.8rem) clamp(0.55rem, 1vw, 0.85rem);
+  gap: 0.65rem;
+  padding: clamp(0.8rem, 1.6vh, 1.1rem) clamp(0.7rem, 1.2vw, 1rem);
   background: var(--card);
   min-width: 0;
-  align-items: flex-start;
+  min-height: 3.5rem;
+  align-items: center;
   box-sizing: border-box;
 }
 
 .hero-bar-item > div {
   min-width: 0;
   flex: 1 1 auto;
+  display: flex;
+  align-items: center;
 }
 
 .hero-bar-num {
@@ -764,10 +765,10 @@ body:has(.ap-modal.open) .topnav {
 }
 
 .hero-bar-item h5 {
-  margin: 0 0 0.15rem;
-  font-size: clamp(0.68rem, 0.95vw, 0.78rem);
+  margin: 0;
+  font-size: clamp(0.76rem, 1vw, 0.9rem);
   font-family: var(--display);
-  line-height: 1.25;
+  line-height: 1.3;
   color: var(--ink);
 }
 
@@ -1473,14 +1474,14 @@ body:has(.ap-modal.open) .topnav {
 }
 
 .screen .flow-stations {
-  height: 96px;
+  height: 105px;
   margin-top: -72px;
 }
 
 .screen .station-dot {
-  width: 46px;
-  height: 46px;
-  font-size: 0.9rem;
+  width: 60px;
+  height: 60px;
+  font-size: 1.2rem;
 }
 
 .screen .station-name {
@@ -1589,10 +1590,6 @@ body:has(.ap-modal.open) .topnav {
     --orbit: 124px;
   }
 
-  .screen .station-dot {
-    width: 42px;
-    height: 42px;
-  }
 }
 
 .bar {
@@ -2128,15 +2125,15 @@ body:has(.ap-modal.open) .topnav {
 }
 
 .station-dot {
-  width: 46px;
-  height: 46px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   display: grid;
   place-items: center;
   background: var(--card);
   border: 1px solid var(--line);
   font-family: var(--display);
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   font-weight: 700;
   transition: 0.35s var(--ease);
 }
@@ -2887,6 +2884,17 @@ body:has(.ap-modal.open) .topnav {
   background-color: var(--navy);
 }
 
+.story-pick {
+  display: flex;
+  flex-direction: column;
+}
+
+.story-pick .ap-modal-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  flex: none;
+}
+
 .ap-modal-item h4,
 .story-pick h4 {
   margin: 0.7rem 0.85rem 0.35rem;
@@ -3033,6 +3041,33 @@ body:has(.ap-modal.open) .topnav {
   grid-template-columns: 0.75fr 1.1fr 0.75fr;
   gap: 0.75rem;
   align-items: stretch;
+  will-change: transform;
+}
+
+.story-strip.slide-next {
+  animation-name: story-slide-next;
+}
+
+.story-strip.slide-prev {
+  animation-name: story-slide-prev;
+}
+
+@keyframes story-slide-next {
+  from {
+    transform: translate3d(34%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes story-slide-prev {
+  from {
+    transform: translate3d(-34%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 .story-card {
