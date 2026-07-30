@@ -69,7 +69,6 @@ export default function HeroExperience() {
         loop
         playsInline
         preload="auto"
-        poster="/assets/space-backdrop.jpg"
         aria-hidden="true"
       >
         <source src="/assets/hero-scenes.mp4" type="video/mp4" />

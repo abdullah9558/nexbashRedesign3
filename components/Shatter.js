@@ -120,7 +120,7 @@ export default function Shatter({ projects = [] }) {
 
   return (
     <section
-      className="band screen"
+      className="band screen previous-projects"
       id="projects"
       data-reveal
       onMouseEnter={() => setPaused(true)}

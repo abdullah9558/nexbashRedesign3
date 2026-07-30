@@ -27,7 +27,7 @@ export default function Packages({ packages = [] }) {
 
   return (
     <section
-      className="band screen"
+      className="band screen packages-section"
       id="packages"
       data-reveal
       onMouseEnter={() => setPaused(true)}
@@ -46,7 +46,12 @@ export default function Packages({ packages = [] }) {
           >
             <div className="pack-glow" aria-hidden="true" />
             {pkg.badge && <span className="hot-flag bounce-soft">{pkg.badge}</span>}
+            <span className="pack-audience">{pkg.audience}</span>
             <h3>{pkg.name}</h3>
+            <div className="pack-price">
+              <strong>{pkg.price}</strong>
+              <span>{pkg.priceNote}</span>
+            </div>
             <p>{pkg.desc}</p>
             <ul>
               {pkg.items.map((item, j) => (
@@ -56,7 +61,7 @@ export default function Packages({ packages = [] }) {
               ))}
             </ul>
             <a href="#contact" className="ghost">
-              Talk to us
+              Discuss this package
             </a>
           </article>
         ))}
