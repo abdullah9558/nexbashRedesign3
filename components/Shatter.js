@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import useDragScroll from '@/components/useDragScroll';
 import useDragSlide from '@/components/useDragSlide';
+import { ChevronLeft, ChevronRight } from '@/components/NavArrows';
 
 /** Shatter gallery for previous projects */
 const PROJECT_IMAGES = {
@@ -130,50 +131,68 @@ export default function Shatter({ projects = [] }) {
         <h2>Case studies from the field</h2>
       </header>
 
-      <div className="shatter-stage reveal-child drag-swipe" style={{ '--i': 1 }} ref={viewportRef}>
-        <div
-          className={`shatter-glass slide-${dir > 0 ? 'next' : 'prev'}`}
-          key={p.id}
-          ref={trackRef}
-        >
-          <div className="shard s1" style={{ backgroundImage: `url('${img}')` }} />
-          <div className="shard s2" style={{ backgroundImage: `url('${img}')` }} />
-          <div className="shard s3" style={{ backgroundImage: `url('${img}')` }} />
-          <div className="shard s4" style={{ backgroundImage: `url('${img}')` }} />
-          <div className="shatter-meta">
-            <span>{p.tag}</span>
-            <h3>{p.title}</h3>
-            <p>{p.desc}</p>
-            <div className="shatter-stats">
-              {stats.map((s) => (
-                <b key={s}>{s}</b>
-              ))}
+      <div className="shatter-main-wrap reveal-child" style={{ '--i': 1 }}>
+        <button type="button" className="project-nav project-nav-prev" onClick={() => step(-1)} aria-label="Previous project">
+          <ChevronLeft />
+        </button>
+        <div className="shatter-stage drag-swipe" ref={viewportRef}>
+          <div
+            className={`shatter-glass slide-${dir > 0 ? 'next' : 'prev'}`}
+            key={p.id}
+            ref={trackRef}
+          >
+            <div className="shard s1" style={{ backgroundImage: `url('${img}')` }} />
+            <div className="shard s2" style={{ backgroundImage: `url('${img}')` }} />
+            <div className="shard s3" style={{ backgroundImage: `url('${img}')` }} />
+            <div className="shard s4" style={{ backgroundImage: `url('${img}')` }} />
+            <div className="shatter-meta">
+              <span>{p.tag}</span>
+              <h3>{p.title}</h3>
+              <p>{p.desc}</p>
+              <div className="shatter-stats">
+                {stats.map((s) => (
+                  <b key={s}>{s}</b>
+                ))}
+              </div>
             </div>
           </div>
         </div>
+        <button type="button" className="project-nav project-nav-next" onClick={() => step(1)} aria-label="Next project">
+          <ChevronRight />
+        </button>
       </div>
 
-      <div className="shatter-rail reveal-child drag-rail" style={{ '--i': 2 }} ref={railRef}>
-        {projects.map((item, i) => (
-          <button
-            key={item.id}
-            type="button"
-            className={`shard-thumb ${i === idx ? 'on' : ''}`}
-            onPointerUp={(e) => {
-              if (e.pointerType === 'mouse' && e.button !== 0) return;
-              if (didDrag.current) return;
-              select(i);
-            }}
-          >
-            <span
-              className="shard-thumb-media"
-              style={{
-                backgroundImage: `url('${PROJECT_IMAGES[item.id] || `/assets/project-${item.id}.png`}')`,
+      <div className="project-rail-wrap reveal-child" style={{ '--i': 2 }}>
+        <button type="button" className="project-rail-nav" onClick={() => step(-1)} aria-label="Previous project card">
+          <ChevronLeft />
+        </button>
+        <div className="shatter-rail drag-rail" ref={railRef}>
+          {projects.map((item, i) => (
+            <button
+              key={item.id}
+              type="button"
+              className={`shard-thumb ${i === idx ? 'on' : ''}`}
+              onClick={() => {
+                if (didDrag.current) {
+                  didDrag.current = false;
+                  return;
+                }
+                select(i);
               }}
-            />
-            <span className="shard-thumb-label">{item.title}</span>
-          </button>
-        ))}
+            >
+              <span
+                className="shard-thumb-media"
+                style={{
+                  backgroundImage: `url('${PROJECT_IMAGES[item.id] || `/assets/project-${item.id}.png`}')`,
+                }}
+              />
+              <span className="shard-thumb-label">{item.title}</span>
+            </button>
+          ))}
+        </div>
+        <button type="button" className="project-rail-nav" onClick={() => step(1)} aria-label="Next project card">
+          <ChevronRight />
+        </button>
       </div>
     </section>
   );

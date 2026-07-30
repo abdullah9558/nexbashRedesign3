@@ -26,11 +26,6 @@ export default function useDragScroll() {
       startX = e.clientX;
       startScroll = el.scrollLeft;
       pid = e.pointerId;
-      try {
-        el.setPointerCapture(e.pointerId);
-      } catch {
-        /* ignore */
-      }
     };
 
     const move = (e) => {
@@ -42,6 +37,11 @@ export default function useDragScroll() {
         dragging = true;
         didDrag.current = true;
         el.classList.add('is-dragging');
+        try {
+          el.setPointerCapture(e.pointerId);
+        } catch {
+          /* ignore */
+        }
       }
       el.scrollLeft = startScroll - dx;
       e.preventDefault();

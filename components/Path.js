@@ -22,7 +22,6 @@ export default function Path({ process = [] }) {
       <header className="band-head reveal-child" style={{ '--i': 0 }}>
         <p className="kicker">Process · Flow path</p>
         <h2>From idea to launch — the journey we take together</h2>
-        <p className="lede">Hover any station — the path lights up and details slide in.</p>
       </header>
 
       <div

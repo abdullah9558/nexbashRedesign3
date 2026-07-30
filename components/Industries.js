@@ -1,58 +1,25 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
-import useDragSlide from '@/components/useDragSlide';
-import useAnimatedStep from '@/components/useAnimatedStep';
-import { ChevronLeft, ChevronRight } from '@/components/NavArrows';
+import { useEffect, useState } from 'react';
 
 export default function Industries({ industries = [] }) {
-  const [idx, setIdx] = useState(0);
-  const [dir, setDir] = useState(1);
   const [open, setOpen] = useState(false);
-  const [paused, setPaused] = useState(false);
-  const total = industries.length;
-  const active = industries[idx];
-
-  const step = useCallback(
-    (delta) => {
-      setDir(delta);
-      setIdx((i) => (i + delta + total) % total);
-    },
-    [total]
-  );
-
-  const { viewportRef, trackRef } = useDragSlide(step);
-  const animatedStep = useAnimatedStep(step, trackRef);
-
-  const goTo = (next) => {
-    setDir(next > idx || (idx === total - 1 && next === 0) ? 1 : -1);
-    if (idx === 0 && next === total - 1) setDir(-1);
-    setIdx(next);
-  };
+  const featured = industries.slice(0, 10);
 
   useEffect(() => {
-    if (!total || paused) return undefined;
-    const timer = setInterval(() => {
-      setDir(1);
-      setIdx((i) => (i + 1) % total);
-    }, 4200);
-    return () => clearInterval(timer);
-  }, [total, paused]);
-
-  useEffect(() => {
-    const onKey = (e) => {
-      if (e.key === 'Escape') setOpen(false);
+    const onKey = (event) => {
+      if (event.key === 'Escape') setOpen(false);
     };
     document.addEventListener('keydown', onKey);
     return () => document.removeEventListener('keydown', onKey);
   }, []);
 
-  if (!active) return null;
+  if (!industries.length) return null;
 
   return (
     <>
-      <section className="band screen" id="help" data-reveal>
-        <header className="band-head row-head reveal-child" style={{ '--i': 0 }}>
+      <section className="band screen industries-impact" id="help" data-reveal>
+        <header className="band-head row-head industries-impact-head">
           <div>
             <p className="kicker">Who we help</p>
             <h2>Industries we serve</h2>
@@ -61,58 +28,41 @@ export default function Industries({ industries = [] }) {
               work in your field.
             </p>
           </div>
-          <button type="button" className="ghost" onClick={() => setOpen(true)}>
-            View All
-          </button>
         </header>
 
-        <div
-          className="ind-stage reveal-child"
-          style={{ '--i': 1 }}
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-        >
-          <button type="button" className="ghost ind-nav" onClick={() => animatedStep(-1)} aria-label="Previous">
-            <ChevronLeft />
-          </button>
-          <div className="ind-viewport drag-swipe" ref={viewportRef}>
-            <div
-              className={`ind-frame tilt slide-${dir > 0 ? 'next' : 'prev'}`}
-              key={active.name}
-              ref={trackRef}
-            >
-              <div className="ind-visual" style={{ backgroundImage: `url('${active.image}')` }} />
-              <div className="ind-copy">
-                <span className="mono">
-                  {String(idx + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
+        <div className="industries-impact-grid reveal-child" style={{ '--i': 1 }}>
+          {featured.map((industry, index) => (
+            <article className="industries-impact-row" key={industry.name}>
+              <span
+                className="industries-impact-icon"
+                style={{ backgroundImage: `url('${industry.image}')` }}
+                aria-hidden="true"
+              />
+              <div>
+                <span className="industries-impact-number">
+                  {String(index + 1).padStart(2, '0')}
                 </span>
-                <h3>{active.name}</h3>
-                <p>{active.desc}</p>
+                <h3>{industry.name}</h3>
               </div>
-            </div>
-          </div>
-          <button type="button" className="ghost ind-nav" onClick={() => animatedStep(1)} aria-label="Next">
-            <ChevronRight />
-          </button>
+              <span className="industries-impact-arrow" aria-hidden="true">
+                ↗
+              </span>
+            </article>
+          ))}
         </div>
 
-        <div className="ind-dots">
-          {industries.map((ind, i) => (
-            <button
-              key={ind.name}
-              type="button"
-              className={`ind-dot ${i === idx ? 'on' : ''}`}
-              aria-label={ind.name}
-              onClick={() => goTo(i)}
-            />
-          ))}
+        <div className="industries-impact-footer reveal-child" style={{ '--i': 2 }}>
+          <span>{industries.length} industries. One delivery standard.</span>
+          <button type="button" className="ghost" onClick={() => setOpen(true)}>
+            Explore all industries
+          </button>
         </div>
       </section>
 
       <div
         className={`ap-modal${open ? ' open' : ''}`}
-        onClick={(e) => {
-          if (e.target === e.currentTarget) setOpen(false);
+        onClick={(event) => {
+          if (event.target === event.currentTarget) setOpen(false);
         }}
       >
         <div className="ap-modal-card" key={open ? 'industries-open' : 'industries'}>
@@ -124,14 +74,14 @@ export default function Industries({ industries = [] }) {
             Organizations across sectors rely on Nexbash for AI, geospatial, and software systems.
           </p>
           <div className="ap-modal-grid">
-            {industries.map((ind) => (
-              <article className="ap-modal-item" key={ind.name}>
+            {industries.map((industry) => (
+              <article className="ap-modal-item" key={industry.name}>
                 <div
                   className="ap-modal-thumb"
-                  style={ind.image ? { backgroundImage: `url('${ind.image}')` } : undefined}
+                  style={industry.image ? { backgroundImage: `url('${industry.image}')` } : undefined}
                 />
-                <h4>{ind.name}</h4>
-                <p>{ind.desc}</p>
+                <h4>{industry.name}</h4>
+                <p>{industry.desc}</p>
               </article>
             ))}
           </div>

@@ -1,23 +1,12 @@
 'use client';
 
 import BrandLogo from '@/components/BrandLogo';
-import HeroWorld from '@/components/HeroWorld';
+import HeroExperience from '@/components/HeroExperience';
 
 export default function Hero({ heroBar = [] }) {
   return (
     <section className="hero screen" id="top">
-      <video
-        className="hero-space"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        poster="/assets/space-backdrop.jpg"
-        aria-hidden="true"
-      >
-        <source src="/assets/hero-scenes.mp4" type="video/mp4" />
-      </video>
+      <HeroExperience />
 
       <div className="hero-main">
         <div className="hero-copy">
@@ -26,14 +15,16 @@ export default function Hero({ heroBar = [] }) {
             Signal · Geospatial · Intelligence
             <span className="signal-live" aria-hidden="true" />
           </p>
-          <h1 className="anim-fade hero-title">
-            Turning complex data into{' '}
-            <span className="word-dance">operational advantage</span>
-          </h1>
-          <p className="hero-sub anim-fade">
-            Enterprise AI, geospatial, and software engineering for organizations managing critical
-            infrastructure and large-scale operations.
-          </p>
+          <div className="hero-text-panel">
+            <h1 className="anim-fade hero-title">
+              Turning complex data into{' '}
+              <span className="word-dance">operational advantage</span>
+            </h1>
+            <p className="hero-sub anim-fade">
+              Enterprise AI, geospatial, and software engineering for organizations managing critical
+              infrastructure and large-scale operations.
+            </p>
+          </div>
           <div className="hero-row anim-fade">
             <a href="#contact" className="go go-pulse">
               Start a Project
@@ -43,8 +34,6 @@ export default function Hero({ heroBar = [] }) {
             </a>
           </div>
         </div>
-
-        <HeroWorld />
       </div>
 
       <div className="hero-bar">
