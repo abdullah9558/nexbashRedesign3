@@ -5763,6 +5763,179 @@ body {
   }
 }
 
+/* Nexbash3 final layout normalization */
+.geo-grid {
+  display: none;
+}
+
+.hero-title .word-dance {
+  color: var(--orange);
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  -webkit-text-fill-color: var(--orange);
+  animation: none;
+}
+
+.band,
+.band.screen,
+.hero-main,
+.hero-bar {
+  width: 100%;
+  max-width: calc(var(--max) + 6rem);
+}
+
+.institution-trust > .kicker,
+.institution-grid,
+.partners > .kicker,
+.partner-rail,
+.awards-exact-head,
+.awards-logo-strip {
+  width: min(100%, calc(var(--max) + 6rem));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.studio-service-extra {
+  display: block;
+}
+
+.station-dot,
+.station.on .station-dot,
+.station:hover .station-dot {
+  background: #10283b;
+  border-color: #29475f;
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(16, 40, 59, 0.22);
+}
+
+.pack,
+.pack.hot,
+.pack.pack-live,
+[data-theme='dark'] .pack.hot,
+[data-theme='dark'] .pack.pack-live {
+  background: #10283b;
+  border-color: #29475f;
+  color: #fff;
+}
+
+.pack:hover,
+.pack.hot:hover,
+.pack.pack-live:hover {
+  background: #17364c;
+  border-color: #3b5d75;
+}
+
+.pack h3,
+.pack-price strong {
+  color: #fff;
+}
+
+.pack p,
+.pack li,
+.pack-price span {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.pack .ghost {
+  border-color: rgba(255, 255, 255, 0.24);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+/* Elevated cards while preserving the original light package surfaces */
+.pack,
+.pack:hover {
+  background: var(--card);
+  border-color: rgba(4, 28, 53, 0.16);
+  color: var(--ink);
+  box-shadow:
+    0 3px 0 rgba(4, 28, 53, 0.08),
+    0 18px 42px rgba(4, 28, 53, 0.16),
+    0 0 0 1px rgba(255, 255, 255, 0.72) inset;
+  transform: translateY(-4px);
+}
+
+/* Final navigation, studio proportions, and Process elevation */
+.topnav,
+.topnav.is-solid,
+.topnav:not(.is-solid) {
+  width: min(calc(var(--max) + 6rem), calc(100% - 24px));
+}
+
+.studio-service-card,
+.studio-services.is-expanded .studio-service-card {
+  min-height: 0;
+  aspect-ratio: 1 / 1;
+}
+
+.station-dot,
+.station.on .station-dot,
+.station:hover .station-dot {
+  background: var(--card);
+  border: 2px solid rgba(4, 28, 53, 0.16);
+  color: var(--ink);
+  box-shadow:
+    0 4px 0 rgba(4, 28, 53, 0.12),
+    0 20px 42px rgba(4, 28, 53, 0.22),
+    0 0 0 5px rgba(255, 255, 255, 0.6);
+  transform: translateY(-5px);
+}
+
+.flow-tip {
+  border-color: rgba(4, 28, 53, 0.14);
+  box-shadow:
+    0 4px 0 rgba(4, 28, 53, 0.1),
+    0 24px 52px rgba(4, 28, 53, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.72) inset;
+}
+
+.pack,
+.pack:hover,
+.pack.hot,
+.pack.pack-live {
+  box-shadow:
+    0 4px 0 rgba(4, 28, 53, 0.1),
+    0 24px 54px rgba(4, 28, 53, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.76) inset;
+}
+
+.pack.hot,
+.pack.pack-live,
+.pack.hot:hover,
+.pack.pack-live:hover {
+  background: linear-gradient(165deg, rgba(255, 74, 19, 0.16), var(--card) 48%);
+  border-color: rgba(255, 74, 19, 0.42);
+}
+
+.pack h3,
+.pack-price strong {
+  color: var(--ink);
+}
+
+.pack p,
+.pack li,
+.pack-price span {
+  color: var(--muted);
+}
+
+.pack .ghost {
+  border-color: var(--line);
+  background: color-mix(in srgb, var(--card) 70%, transparent);
+  color: var(--ink);
+}
+
+.station-dot,
+.station.on .station-dot,
+.station:hover .station-dot {
+  border: 2px solid #3b5d75;
+  box-shadow:
+    0 3px 0 rgba(4, 28, 53, 0.18),
+    0 16px 34px rgba(4, 28, 53, 0.28),
+    0 0 0 5px rgba(16, 40, 59, 0.08);
+  transform: translateY(-4px);
+}
+
 /* Unified interactive hero: cinematic video and draggable globe share one stage. */
 .hero-experience {
   --experience-x: 0px;

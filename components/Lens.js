@@ -82,7 +82,6 @@ export default function Lens({ capabilities = [] }) {
         </div>
 
         <div className="capability-readout" key={`copy-${capability.id}`}>
-          <span className="mono">{capability.tag}</span>
           <h3>{capability.name}</h3>
           <p>{capability.desc}</p>
           <div className="capability-meter">

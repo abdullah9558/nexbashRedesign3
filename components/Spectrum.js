@@ -1,15 +1,9 @@
-'use client';
-
-import { useState } from 'react';
-
 export default function Spectrum({ studios = [] }) {
-  const [expanded, setExpanded] = useState(false);
-
   if (!studios.length) return null;
 
   return (
     <section
-      className={`band screen studio-services${expanded ? ' is-expanded' : ''}`}
+      className="band screen studio-services is-expanded"
       id="studios"
       data-reveal
     >
@@ -22,17 +16,13 @@ export default function Spectrum({ studios = [] }) {
         </header>
 
         <div className="studio-service-grid">
-          {studios.map((studio, index) => (
+          {studios.map((studio) => (
             <article
-              className={`studio-service-card${index >= 4 ? ' studio-service-extra' : ''}`}
+              className="studio-service-card"
               key={studio.id}
             >
               <img src={studio.image} alt="" />
               <div className="studio-service-shade" />
-              <div className="studio-service-top">
-                <span>{studio.timeline}</span>
-                <span aria-hidden="true">-&gt;</span>
-              </div>
               <div className="studio-service-copy">
                 <h3>{studio.title}</h3>
                 <p>{studio.modalDesc}</p>
@@ -41,15 +31,6 @@ export default function Spectrum({ studios = [] }) {
           ))}
         </div>
 
-        <button
-          type="button"
-          className="studio-service-more"
-          onClick={() => setExpanded((current) => !current)}
-          aria-expanded={expanded}
-        >
-          {expanded ? 'View Fewer Studios' : 'View More Studios'}
-          <span aria-hidden="true">{expanded ? '-' : '+'}</span>
-        </button>
     </section>
   );
 }
