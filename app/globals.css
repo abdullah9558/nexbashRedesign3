@@ -6018,6 +6018,8 @@ body {
 
 .hero-text-panel .hero-sub {
   margin-bottom: 0;
+  color: #18344d;
+  font-weight: 500;
 }
 
 @media (max-width: 980px) {
