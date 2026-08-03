@@ -9,31 +9,31 @@ export default function Footer() {
         <div className="footer-brand">
           <BrandLogo src="/assets/nexbash-logo-white.png" />
           <p>AI, geospatial intelligence, and production software built for real operational environments.</p>
-          <a className="footer-cta" href="#contact">Start a project <span>↗</span></a>
+          <a className="footer-cta" href="/#contact">Start a project <span>↗</span></a>
         </div>
 
         <div className="footer-column">
           <h3>What we do</h3>
-          <a href="#studios">AI &amp; Data</a>
-          <a href="#studios">Geospatial Systems</a>
-          <a href="#studios">Custom Software</a>
-          <a href="#studios">Digital Platforms</a>
+          <a href="/#studios">AI &amp; Data</a>
+          <a href="/#studios">Geospatial Systems</a>
+          <a href="/#studios">Custom Software</a>
+          <a href="/#studios">Digital Platforms</a>
         </div>
 
         <div className="footer-column">
           <h3>Who we help</h3>
-          <a href="#industries">Government</a>
-          <a href="#industries">Healthcare</a>
-          <a href="#industries">Enterprise</a>
-          <a href="#industries">Startups</a>
+          <a href="/industries/public-sector-government">Government</a>
+          <a href="/industries/healthcare-clinical-diagnostics">Healthcare</a>
+          <a href="/industries/enterprises-corporates">Enterprise</a>
+          <a href="/industries/startups-founders">Startups</a>
         </div>
 
         <div className="footer-column">
           <h3>Company</h3>
-          <a href="#projects">Previous Projects</a>
-          <a href="#process">How We Deliver</a>
-          <a href="#certifications">Certifications</a>
-          <a href="#contact">Contact</a>
+          <a href="/#projects">Previous Projects</a>
+          <a href="/#process">How We Deliver</a>
+          <a href="/#certifications">Certifications</a>
+          <a href="/#contact">Contact</a>
         </div>
 
         <div className="footer-column footer-contact">

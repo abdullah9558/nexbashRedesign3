@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 
 /** Geospatial field — lat/long grid, radar sweep, satellite links. */
-export default function GeoField() {
+export default function GeoField({ className = '' }) {
   const rootRef = useRef(null);
 
   useEffect(() => {
@@ -65,7 +65,7 @@ export default function GeoField() {
   ];
 
   return (
-    <div className="geo" ref={rootRef} aria-hidden="true">
+    <div className={`geo ${className}`.trim()} ref={rootRef} aria-hidden="true">
       <div className="geo-vignette" />
       <div className="geo-grid">
         {meridians.map((x) => (

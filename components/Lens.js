@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 
 const CAP_IMAGES = {
   'ai-ml': '/assets/studio-ai-ml.png',
@@ -13,17 +14,32 @@ const CAP_IMAGES = {
   'devops-cloud': '/assets/studio-cloud-devops.png',
 };
 
+const CAP_DETAILS = {
+  'ai-ml': ['Computer vision and NLP', 'Predictive decision systems', 'Model deployment and monitoring'],
+  geospatial: ['Interactive mapping platforms', 'Spatial analytics and automation', 'Digital twins and location intelligence'],
+  'data-science': ['Data pipelines and warehousing', 'Decision dashboards', 'Forecasting and operational analytics'],
+  blockchain: ['Smart contracts and tokenization', 'Secure digital identity', 'Verifiable records and audit trails'],
+  'web-mobile': ['Responsive web platforms', 'Native and cross-platform apps', 'Secure APIs and backend systems'],
+  'design-ux': ['User research and journey mapping', 'Interface systems and prototypes', 'Accessibility and usability testing'],
+  qa: ['Automated functional testing', 'Performance and security validation', 'Release quality engineering'],
+  'devops-cloud': ['Cloud-native architecture', 'CI/CD and infrastructure automation', 'Monitoring, resilience, and cost control'],
+};
+
+const DetailModal = () => null;
+
 export default function Lens({ capabilities = [] }) {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const consoleRef = useRef(null);
   const capability = capabilities[active];
+  const selected = null;
+  const closeDetail = () => {};
 
   useEffect(() => {
     if (!capabilities.length || paused) return undefined;
     const timer = window.setInterval(
       () => setActive((current) => (current + 1) % capabilities.length),
-      4800
+      6500
     );
     return () => window.clearInterval(timer);
   }, [capabilities.length, paused]);
@@ -59,17 +75,16 @@ export default function Lens({ capabilities = [] }) {
         <div className="capability-console-glow" />
         <div className="capability-index">
           {capabilities.map((item, index) => (
-            <button
-              type="button"
+            <Link
               key={item.id}
               className={index === active ? 'on' : ''}
+              href={`/capabilities/${item.id}`}
               onMouseEnter={() => setActive(index)}
               onFocus={() => setActive(index)}
-              onClick={() => setActive(index)}
             >
               <span>{String(index + 1).padStart(2, '0')}</span>
               {item.name}
-            </button>
+            </Link>
           ))}
         </div>
 
@@ -91,8 +106,38 @@ export default function Lens({ capabilities = [] }) {
             <span>MODULE {String(active + 1).padStart(2, '0')}</span>
             <span>{String(capabilities.length).padStart(2, '0')} ACTIVE NODES</span>
           </div>
+          <Link className="case-detail-button capability-detail-button" href={`/capabilities/${capability.id}`}>
+            Explore capability
+          </Link>
         </div>
       </div>
+      {false && <DetailModal
+        open={Boolean(selected)}
+        onClose={closeDetail}
+        eyebrow="Capability Spotlight"
+        title={selected?.name || ''}
+        image={selected ? CAP_IMAGES[selected.id] : undefined}
+      >
+        <p className="detail-page-lede">{selected?.desc}</p>
+        <div className="detail-page-columns">
+          <section>
+            <h3>What we deliver</h3>
+            <ul>{(CAP_DETAILS[selected?.id] || []).map((item) => <li key={item}>{item}</li>)}</ul>
+          </section>
+          <section>
+            <h3>Engineering foundations</h3>
+            <ul><li>Production-ready architecture</li><li>Security and quality built in</li><li>Documentation and knowledge transfer</li></ul>
+          </section>
+        </div>
+        <section className="detail-page-section">
+          <h3>Delivery model</h3>
+          <p>We begin with discovery and technical validation, deliver an operational first release, and expand through measured iterations backed by testing, deployment automation, and ongoing support.</p>
+        </section>
+        <section className="detail-page-section">
+          <h3>Business value</h3>
+          <p>Each capability is tied to a measurable operational outcome: faster decisions, reduced manual work, resilient service delivery, clearer data, or improved customer experience.</p>
+        </section>
+      </DetailModal>}
     </section>
   );
 }

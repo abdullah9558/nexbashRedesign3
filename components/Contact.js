@@ -9,7 +9,7 @@ export default function Contact() {
       <div className="contact-shell reveal-child tilt" style={{ '--i': 0 }}>
         <div className="contact-copy">
           <p className="kicker">Contact</p>
-          <h2>Open a channel</h2>
+          <h2>Send Us Your Query</h2>
           <p className="lede">Tell us the terrain. We reply with a clear next step.</p>
           <div className="contact-pulse" aria-hidden="true">
             <span />

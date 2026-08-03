@@ -5,7 +5,6 @@ import GeoField from '@/components/GeoField';
 import MotionRoot from '@/components/MotionRoot';
 import Nav from '@/components/Nav';
 import Hero from '@/components/Hero';
-import Institutions from '@/components/Institutions';
 import Spectrum from '@/components/Spectrum';
 import Shatter from '@/components/Shatter';
 import Packages from '@/components/Packages';
@@ -27,7 +26,7 @@ export default function HomePage({ site }) {
       <Nav />
       <main>
         <Hero heroBar={site.heroBar} />
-        <Institutions />
+        <Certifications />
         <Spectrum studios={site.studios} />
         <Industries industries={site.industries} />
         <Shatter projects={site.projects} />
@@ -36,7 +35,6 @@ export default function HomePage({ site }) {
         <Path process={site.process} />
         <FAQ faq={site.faq} />
         <Partners partners={site.partners} />
-        <Certifications />
         <Contact />
       </main>
       <Footer />

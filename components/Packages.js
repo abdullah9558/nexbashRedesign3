@@ -41,8 +41,7 @@ export default function Packages({ packages = [] }) {
         {packages.map((pkg, i) => (
           <article
             key={pkg.name}
-            className={`pack tilt ${pkg.highlight ? 'hot' : ''} ${active === i ? 'pack-live' : ''}`}
-            onMouseEnter={() => setActive(i)}
+            className={`pack ${pkg.highlight ? 'hot' : ''} ${active === i ? 'pack-live' : ''}`}
           >
             <div className="pack-glow" aria-hidden="true" />
             {pkg.badge && <span className="hot-flag bounce-soft">{pkg.badge}</span>}
@@ -52,11 +51,10 @@ export default function Packages({ packages = [] }) {
               <strong>{pkg.price}</strong>
               <span>{pkg.priceNote}</span>
             </div>
-            <p>{pkg.desc}</p>
             <ul>
               {pkg.items.map((item, j) => (
                 <li key={item} style={{ '--j': j }}>
-                  {item}
+                  {j < 2 && <span className="pack-plus" aria-hidden="true">+</span>}{item}
                 </li>
               ))}
             </ul>

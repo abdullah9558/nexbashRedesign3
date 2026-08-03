@@ -36,7 +36,7 @@ const menus = [
   },
 ];
 
-export default function Nav() {
+export default function Nav({ forceSolid = false }) {
   const [solid, setSolid] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -49,10 +49,12 @@ export default function Nav() {
 
   const closeNav = () => setOpen(false);
 
+  const effectiveSolid = forceSolid || solid;
+
   return (
-    <header className={`topnav ${solid ? 'is-solid' : ''}`}>
-      <a href="#top" className="brand">
-        <BrandLogo src={solid ? '/assets/nexbash-logo.png' : '/assets/nexbash-logo-white.png'} />
+    <header className={`topnav ${effectiveSolid ? 'is-solid' : ''}`}>
+      <a href="/#top" className="brand">
+        <BrandLogo src={effectiveSolid ? '/assets/nexbash-logo.png' : '/assets/nexbash-logo-white.png'} />
       </a>
       <nav className={open ? 'open' : ''}>
         {menus.map((menu) => (
@@ -61,7 +63,7 @@ export default function Nav() {
             <div className="nav-dropdown">
               {menu.items.map(([label, children]) => (
                 <div className="nav-submenu" key={label}>
-                  <a href={menu.label === 'What We Do' ? '#studios' : menu.label === 'Who We Help' ? '#help' : '#process'} onClick={closeNav}>
+                  <a href={menu.label === 'What We Do' ? '/#studios' : menu.label === 'Who We Help' ? '/#help' : '/#process'} onClick={closeNav}>
                   <span>{label}</span>
                   <span aria-hidden="true">-&gt;</span>
                   </a>
@@ -74,10 +76,10 @@ export default function Nav() {
             </div>
           </div>
         ))}
-        <a href="#packages" onClick={closeNav}>Packages</a>
-        <a href="#contact" onClick={closeNav}>Contact</a>
+        <a href="/#packages" onClick={closeNav}>Packages</a>
+        <a href="/#contact" onClick={closeNav}>Contact</a>
       </nav>
-      <a href="#contact" className="go">
+      <a href="/#contact" className="go">
         Get Started
       </a>
       <button

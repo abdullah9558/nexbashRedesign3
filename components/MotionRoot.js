@@ -126,10 +126,8 @@ export default function MotionRoot() {
     };
 
     bindMagnets();
-    bindTilts();
     const rebind = window.setTimeout(() => {
       bindMagnets();
-      bindTilts();
     }, 800);
 
     return () => {
