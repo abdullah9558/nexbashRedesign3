@@ -16,7 +16,6 @@ export default function DetailExperience({ data }) {
     <Bloom />
     <Nav forceSolid />
     <main className="long-detail-page" id="top">
-      <div className="detail-backbar"><Link href={data.backHref}>← {data.backLabel}</Link></div>
       <header className="long-detail-hero">
         <div className="long-detail-copy">
           <p className="kicker">{data.type}</p><h1>{data.title}</h1><p>{data.intro}</p>

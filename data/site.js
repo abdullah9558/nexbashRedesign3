@@ -1097,7 +1097,7 @@ const site = {
 
   heroBar: [
     { num: '01', title: 'Build for real environments', text: 'Our mission is to support how organizations actually function within regulatory, technical, and operational constraints.' },
-    { num: '02', title: 'Value that can be measured', text: 'We focus on outcomes that matter to the business, with intelligence tied directly to performance, efficiency, and decision-making.' },
+    { num: '02', title: 'Measurable value', text: 'We focus on outcomes that matter to the business, with intelligence tied directly to performance, efficiency, and decision-making.' },
     { num: '03', title: 'Create Impact that lasts', text: 'We seek to create systems that continue to deliver value over time through stability, knowledge continuity, and long-term support.' },
     { num: '04', title: 'From pilots to operations', text: 'We aim to move AI and geospatial capabilities out of pilot phases and into dependable, production-ready use.' },
   ],

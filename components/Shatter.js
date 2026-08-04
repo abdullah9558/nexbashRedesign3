@@ -116,11 +116,6 @@ export default function Shatter({ projects = [] }) {
               <span>{p.tag}</span>
               <h3>{p.title}</h3>
               <p>{p.desc}</p>
-              <div className="shatter-stats">
-                {stats.map((s) => (
-                  <b key={s}>{s}</b>
-                ))}
-              </div>
               <Link className="case-detail-button" href={`/projects/${p.id}`}>
                 View full case study
               </Link>
