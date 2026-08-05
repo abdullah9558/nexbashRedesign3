@@ -177,7 +177,7 @@ const site = {
     {
       name: 'Launch',
       audience: 'STARTUPS & MVPs',
-      price: '$700',
+      price: '$1,000',
       priceNote: 'starting price · one-time',
       desc: 'Launch your focused digital product.',
       highlight: false,
@@ -186,7 +186,7 @@ const site = {
     {
       name: 'Scale',
       audience: 'GROWING BUSINESSES',
-      price: '$1,000',
+      price: '$3,000',
       priceNote: 'starting price · one-time',
       desc: 'Scale securely with intelligent automation.',
       highlight: true,
@@ -196,7 +196,7 @@ const site = {
     {
       name: 'Mission Critical',
       audience: 'GOVERNMENT & ENTERPRISE',
-      price: '$2,000',
+      price: '$5,000',
       priceNote: 'custom scope · one-time',
       desc: 'Engineer secure mission-critical systems.',
       highlight: false,
