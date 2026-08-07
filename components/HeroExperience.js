@@ -71,7 +71,7 @@ export default function HeroExperience() {
         preload="auto"
         aria-hidden="true"
       >
-        <source src="/assets/hero-scenes.mp4" type="video/mp4" />
+        <source src="/assets/hero-bg-video.mp4" type="video/mp4" />
       </video>
       <div className="hero-experience-globe">
         <HeroWorld />
