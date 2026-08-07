@@ -5857,6 +5857,28 @@ body {
   }
 }
 
+/* Nexbash3 hero typography: white headline with soft gray supporting text. */
+.hero-text-panel {
+  border-color: rgba(255, 255, 255, 0.22) !important;
+  background: rgba(4, 16, 29, 0.48) !important;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.22) !important;
+}
+
+.hero-text-panel .hero-title {
+  color: #fff;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+}
+
+.hero-text-panel .hero-title .word-dance {
+  color: #b9c1cc;
+  -webkit-text-fill-color: #b9c1cc;
+}
+
+.hero-text-panel .hero-sub {
+  color: #c4cbd4 !important;
+  text-shadow: 0 1px 18px rgba(0, 0, 0, 0.3);
+}
+
 /* Final large-screen overrides after legacy normalization rules. */
 @media (min-width: 1600px) {
   :root { --max: 1420px; }
